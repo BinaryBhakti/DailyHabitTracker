@@ -1,0 +1,62 @@
+body{
+    background-image: url(Assets/2.jpg);
+    background-size: 2000px;
+    background-color: black;
+    background-blend-mode: lighten;
+    text-align: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+#title{
+    margin-top: 100px;
+    line-height: 10px;
+}
+
+#subtitle{
+    opacity:0.7;
+    font-size: 18px;
+}
+
+#calendercontainer{
+    display: flex;
+    justify-content: end;
+}
+
+#calenderdiv{
+    background-color: aliceblue;
+    border-radius: 10px 10px 20px 20px;
+    margin:auto;
+    align-content: center;
+    text-align: center;
+}
+
+#calenderhead{
+    display:flex ;
+    justify-content: space-between;
+    border-radius: 10px 10px 0px 0px;
+    border: 2px solid black;
+    padding: 0px 20px;
+    font-size: 20px;
+    background-color: rgb(128, 193, 32);
+    line-height: 0px;
+}
+
+#calendercontent{
+    padding: 20px;
+    border: 2px solid black;
+}
+
+.days{
+    display: flex;
+}
+
+.day{
+    width: 30px;
+    margin: 3px;
+    padding: 10px;
+    font-size: 15px;
+    text-align: center;
+    border-radius: 20px;
+    border: 2px solid black;
+    background-color: rgb(13, 123, 187);
+}
