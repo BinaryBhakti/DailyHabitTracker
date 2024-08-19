@@ -1,57 +1,79 @@
-var date= new Date();
-console.log(date);
-
-var currentMonth=date.getMonth();
-var currentDay= date.getDay();
-var currentDate = date.getDate();
-var currentYear = date.getFullYear();
-
-console.log(currentMonth);
-console.log(currentDay);
-console.log(currentDate);
-console.log(currentYear);
-
-var months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
+const monthNames = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
 ];
 
-var title = document.getElementById("title");
-title.innerHTML=months[currentMonth];
+const date = new Date();
+const currentMonth = date.getMonth();
+const currentYear = date.getFullYear();
+const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
 
-var habittitle = document.getElementById("habittitle");
-habittitle.addEventListener("click", () => {
-    let habits = prompt("What's your habit", habittitle.innerHTML)
-    if(habits.length==0){
-        habittitle.innerHTML="Click to set your habit";
-    }else{
-        habittitle.innerHTML = habits;
+document.getElementById("month-name").textContent = `${monthNames[currentMonth]} ${currentYear}`;
+
+let habitData = JSON.parse(localStorage.getItem('habitData')) || [];
+
+const habitListContainer = document.getElementById("habit-list-container");
+const addHabitButton = document.getElementById("add-habit-btn");
+
+function saveHabitData() {
+    localStorage.setItem('habitData', JSON.stringify(habitData));
+}
+
+function createHabitElement(habit) {
+    const habitDiv = document.createElement("div");
+    habitDiv.classList.add("habit");
+
+    const habitTitle = document.createElement("h2");
+    habitTitle.textContent = habit.name;
+    habitDiv.appendChild(habitTitle);
+
+    const trackerDiv = document.createElement("div");
+    trackerDiv.classList.add("tracker");
+
+    for (let i = 1; i <= daysInMonth; i++) {
+        const dayDiv = document.createElement("div");
+        dayDiv.classList.add("day");
+        dayDiv.textContent = i;
+
+        if (habit.progress[i - 1]) {
+            dayDiv.classList.add("completed");
+        }
+
+        dayDiv.addEventListener("click", () => {
+            habit.progress[i - 1] = !habit.progress[i - 1];
+            dayDiv.classList.toggle("completed");
+            saveHabitData();
+        });
+
+        trackerDiv.appendChild(dayDiv);
+    }
+
+    habitDiv.appendChild(trackerDiv);
+    habitListContainer.appendChild(habitDiv);
+}
+
+function addNewHabit(name) {
+    const newHabit = {
+        name: name,
+        progress: Array(daysInMonth).fill(false)
+    };
+
+    habitData.push(newHabit);
+    createHabitElement(newHabit);
+    saveHabitData();
+}
+
+addHabitButton.addEventListener("click", () => {
+    const habitName = prompt("Enter the name of your new habit:");
+    if (habitName) {
+        addNewHabit(habitName);
     }
 });
 
-var daysInTheMonthList = [31,28,31,30,31,30,31,31,30,31,30,31];
-var daysInThisMonth = daysInTheMonthList[currentMonth];
-var dayCompleted = 0;
-var totaldays = document.getElementById("totalDays");
-
-var dayCount=0;
-var rowCount=0;
-var days = document.getElementsByClassName("days");
-for(var i=0; i<days.length; i++){
-    var day = days[rowCount].getElementsByClassName("day");
-    for(var j=0; j<day.length;j++){
-        if(dayCount==currentDate -1){
-            day[j].setAttribute("style","border:2px solid black");
-        }
-    }
+function loadHabits() {
+    habitListContainer.innerHTML = "";
+    habitData.forEach(habit => {
+        createHabitElement(habit);
+    });
 }
+
+loadHabits();
