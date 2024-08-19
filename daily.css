@@ -1,62 +1,91 @@
-body{
-    background-image: url(Assets/2.jpg);
-    background-size: 2000px;
-    background-color: black;
-    background-blend-mode: lighten;
-    text-align: center;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
-
-#title{
-    margin-top: 100px;
-    line-height: 10px;
-}
-
-#subtitle{
-    opacity:0.7;
-    font-size: 18px;
-}
-
-#calendercontainer{
-    display: flex;
-    justify-content: end;
-}
-
-#calenderdiv{
-    background-color: aliceblue;
-    border-radius: 10px 10px 20px 20px;
-    margin:auto;
-    align-content: center;
-    text-align: center;
-}
-
-#calenderhead{
-    display:flex ;
-    justify-content: space-between;
-    border-radius: 10px 10px 0px 0px;
-    border: 2px solid black;
-    padding: 0px 20px;
-    font-size: 20px;
-    background-color: rgb(128, 193, 32);
-    line-height: 0px;
-}
-
-#calendercontent{
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #1f1f1f;
+    color: #f5f5f5;
+    margin: 0;
     padding: 20px;
-    border: 2px solid black;
-}
-
-.days{
-    display: flex;
-}
-
-.day{
-    width: 30px;
-    margin: 3px;
-    padding: 10px;
-    font-size: 15px;
     text-align: center;
-    border-radius: 20px;
-    border: 2px solid black;
-    background-color: rgb(13, 123, 187);
+}
+h1 {
+    color: #00adb5;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+#add-habit-btn {
+    background-color: #00adb5;
+    color: #ffffff;
+    border: none;
+    padding: 10px 30px;
+    margin-bottom: 20px;
+    font-size: 1.2em;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#add-habit-btn:hover {
+    background-color: #007f80;
+    transform: translateY(-2px);
+}
+.habit {
+    background-color: #2d2d2d;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 600px;
+    transition: box-shadow 0.3s ease;
+}
+
+.habit:hover {
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.habit h2 {
+    margin: 0;
+    color: #ffffff;
+    font-size: 1.8em;
+    border-bottom: 2px solid #00adb5;
+    padding-bottom: 10px;
+}
+.tracker {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+}
+.day {
+    background-color: #393e46;
+    color: #eeeeee;
+    font-size: 1.2em;
+    padding: 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.day.completed {
+    background-color: #00adb5;
+    color: #ffffff;
+}
+
+.day:hover {
+    background-color: #555e68;
+    transform: translateY(-2px);
+}
+@media (max-width: 600px) {
+    .tracker {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .day {
+        font-size: 1em;
+        padding: 10px;
+    }
+
+    #add-habit-btn {
+        font-size: 1em;
+        padding: 10px 20px;
+    }
 }
