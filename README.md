@@ -18,3 +18,7 @@ The Habit Tracker is a sleek, modern web application designed to help you track 
 - **CSS3**: Styling with a focus on sleek, modern design and responsive layout.
 - **JavaScript (ES6)**: Core functionality, including data handling and DOM manipulation.
 - **localStorage**: For persistent data storage.
+
+## Future Update
+- **MemoryGame**: Fix the code of this
+- **TimeFeature**: I will add a time feature in the daily habits, so that anyone can add the time when the task has to be done.
